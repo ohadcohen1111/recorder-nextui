@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, Button, DropdownTrigger, Dropdown, DropdownMenu, DropdownItem, Chip, Pagination } from "@nextui-org/react";
+import { Table, User, Tooltip, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, Button, DropdownTrigger, Dropdown, DropdownMenu, DropdownItem, Chip, Pagination, Card, CardBody } from "@nextui-org/react";
 import { SearchIcon } from "@nextui-org/shared-icons";
-interface TableProps {
+interface SessionTableProps {
     data: any[];
+    setSelectedSession: (session: any) => void;
 }
 
-const EnhancedTable: React.FC<TableProps> = ({ data }) => {
+export function SessionTable({ data, setSelectedSession }: SessionTableProps) {
     const [filterValue, setFilterValue] = useState("");
     const [selectedPriority, setSelectedPriority] = useState("all");
     const [page, setPage] = useState(1);
@@ -76,6 +77,11 @@ const EnhancedTable: React.FC<TableProps> = ({ data }) => {
         setPage(1);
     };
 
+
+    const handleRowClick = (item: any) => {
+        setSelectedSession(item);
+    };
+
     return (
         <div>
             <div className="flex justify-between items-center mb-3">
@@ -120,6 +126,8 @@ const EnhancedTable: React.FC<TableProps> = ({ data }) => {
                         />
                     </div>
                 }
+                selectionMode="single"
+                onRowAction={(key) => handleRowClick(data[key])}
             >
                 <TableHeader columns={columns}>
                     {(column) => (
@@ -140,4 +148,3 @@ const EnhancedTable: React.FC<TableProps> = ({ data }) => {
     );
 };
 
-export default EnhancedTable;

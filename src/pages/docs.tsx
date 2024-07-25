@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { title } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
 import { Search } from '../components/search';
-import TableComponent from '../components/table';
+import { SessionTable } from '../components/sessionTable';
+import { BurstTable } from '../components/burstTable';
 import dayjs, { Dayjs } from "dayjs";
 import Cookies from 'js-cookie';
 import axiosInstance from '../utils/axiosInstance';
@@ -17,6 +18,7 @@ export default function DocsPage() {
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [users, setUsers] = useState<any[]>([]);
   const [sessions, setSessions] = useState<any[]>([]);
+  const [selectedSession, setSelectedSession] = useState<any>();
   const [loading, setLoading] = useState(false);
 
   // Fetch users when the component mounts
@@ -102,7 +104,10 @@ export default function DocsPage() {
           Search
         </Button>
       </div>
-      <TableComponent data={sessions} />
+      <SessionTable data={sessions} setSelectedSession={setSelectedSession} />
+      {selectedSession && selectedSession.bursts &&
+        <BurstTable session={selectedSession} />
+      }
     </DefaultLayout>
   );
 };
