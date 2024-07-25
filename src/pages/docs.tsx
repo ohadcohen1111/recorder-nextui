@@ -106,7 +106,7 @@ export default function DocsPage() {
       </div>
       <SessionTable data={sessions} setSelectedSession={setSelectedSession} />
       {selectedSession && selectedSession.bursts &&
-        <BurstTable session={selectedSession} />
+        <BurstTable session={selectedSession} transcriptEnabled={false} />
       }
     </DefaultLayout>
   );
