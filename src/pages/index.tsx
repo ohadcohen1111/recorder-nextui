@@ -125,7 +125,7 @@ export default function IndexPage() {
 
         <form className="space-y-4">
           <Input
-            label="Username"
+            label={t('username')}
             placeholder="Enter your username"
             type="email"
             variant="bordered"
@@ -134,7 +134,7 @@ export default function IndexPage() {
           />
 
           <Input
-            label="Password"
+            label={t('password')}
             placeholder="Enter your password"
             type="password"
             variant="bordered"
@@ -148,7 +148,7 @@ export default function IndexPage() {
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? <Spinner color="current" size="sm" /> : "Log In"}
+            {loading ? <Spinner color="current" size="sm" /> : t('logIn')}
           </Button>
           {error && (
             <Chip
