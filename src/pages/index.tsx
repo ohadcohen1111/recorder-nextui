@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import jwtState from '../utils/jwtState';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
+import logo from '../../MobilTornado_splash_image.png';
 
 export default function IndexPage() {
   const navigate = useNavigate();
@@ -121,8 +122,13 @@ export default function IndexPage() {
   return (
     <DefaultLayout>
       <Card className="max-w-sm mx-auto p-6">
-        <h1 className="text-2xl font-bold mb-4">Log In 👋</h1>
-
+        <div className="flex flex-col items-center mb-6">
+          <img
+            src={logo}
+            alt="Company Logo"
+            className="w-3/4 max-w-[300px] h-auto mb-1"
+          />
+        </div>
         <form className="space-y-4">
           <Input
             label={t('username')}
